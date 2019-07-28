@@ -1,44 +1,75 @@
-
-main{
-background-color:rgb(226, 220, 220); 
-margin: auto;
-width: 500px;
-}
-
-
-
-li > div {
- display:    inline-block ;
-}
-li{
+li {
+    border-bottom: 1px solid;
     position: relative;
-    border-bottom: solid 1px rgb(167, 151, 151);
-    padding: 10px; 
-}
-.name{
-    position: absolute;
-    top:10px;
-    font-weight: bold;
-    
-    
-}
-.continent{
-    position: absolute;
+    padding: 10px;
 
-    bottom: 30% 
 }
 
-.flag{
-    
+
+
+main {
+
+    margin: auto;
+    width: 500px;
+}
+
+.Flag {
     background-size: cover;
     width: 50px;
     height: 50px;
     background-position: center;
     border-radius: 50%;
     border: solid;
-    
-    }
-    ul{
-        list-style: none;
-    }
- 
+
+}
+
+li>div {
+    display: inline-block
+}
+
+ul {
+    position: relative;
+    list-style: none;
+    top: 60px;
+    background-color: aliceblue;
+}
+
+.name {
+    position: absolute;
+    top: 10px;
+    font-weight: bold;
+
+}
+
+.continant {
+    position: absolute;
+    color: rgb(105, 104, 103);
+    top: 40px;
+
+}
+
+header {
+    position: fixed;
+    top: 0;
+    margin: auto;
+    width: 500px;
+    background-color: rgb(245, 233, 233);
+    z-index: 1;
+    border-bottom: 1;
+
+
+}
+
+#search {
+    border-radius: 25%;
+    margin-left: 50px;
+    border: 1px solid #ccc !important;
+    height: 30px;
+    text-align: center;
+    width: 150px;
+}
+
+h1 {
+    display: inline-block;
+    margin-left: 5px;
+}

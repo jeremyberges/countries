@@ -4,44 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
-    <title>Countries</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+    <title>countries</title>
 </head>
 
 <body>
-
-
     <main>
         <header>
-            <h1>
-                Countries
-            </h1>
+            <h1> countries <span id="countriesNum"></span></h1>
+            <input type="search" placeholder="Search Country Name" id="search">
+
         </header>
-        <ul>
-            <li>
-                <div class="flag"
-                    style="background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQcAAAC/CAMAAADEm+k5AAAAhFBMVEX///8AOLgAG7MAMbf2+P1Yb8gAHrPq7PcAJrS/xeYAKbUANbcALbYAL7b7/P4AJLTd4vMAF7IYQ7tEYMPGzerv8Pi4weZNZ8UANLiOndiisOB1iNCyvONxhM+ttuEvUb/i5/Vcc8nS2O+ElNWVo9ogSLxnfMxAXcKcqdx/kNMAAK4HPLqJhU9uAAADtklEQVR4nO3d227iMBSF4RAYjoFACy3QMz3R6fu/3zRedmAqKEiUbEj+76JqJC7MUmJvO06IIgAAAAAAABSigUwUIxPVkCEHIQchByEHIQchByEHIQchByEHIQchByEHIQchByEHIQchByEHIQchByEHIQchByEHIQeJ6shEf5Cx3nYAAMC+5tYNOA2LvwvrJpyEh/6DdRNOwX1aS2+tG2Fv0O/Vev2BdTPMPSdfs73k2boZ1lojN+0dtawbYuxP3eVQr/iEbxz7dZB4bN0UUxc9n0PvwroplubtfGGsXeGqstFdWyHsNqybY+YmUSfp/iY31s2xMlQn2b3TaREPrRtk5NKdCPXL1T+V1GmqhBqGE6PZsW6Sic9e3i2oo+h9WjfJwkt3NUz4gaP7Yt2o4k10VaQqG+aproyJcauK99Z3l8KrP3x1F0n/zbRNR9RobTbW6dC9nbjDya2ujOZ4y+fPvcgaxHFzkzRUkf44VJbpxk/Ho7NfqLlq7nnn/SfNK+uvcbj36cExTN+tv8QvGI4OzmFUior7LjkwhuTO+iv8ikZYZOi2Jfl2HIS+Mvl2nJ77YOEtFURy33HGzwoi9ce5ew0iyWzsj/W59tL6C/wWrb71wwLDg+s5N9RMqq2m4fbWjUqt8qzY+aLJLzBsr6H/r7V9B9ss0QrutVtg0PA3+GFOFeZermrSgFu/LrSlx/WoBYY0K4f8HLu28YO11Vz8SqdN/FhkQ4/tQ19+mi/GbakQO6sraKpIPgpu6XGFi2EW1uC2VYj5Et1s/RIpjzAm+k5ya4XoO8d0HsbWQltZAA2WtWRXheirT/2dlm+HyCLcyXSl0fYKsdFe+1xcwh1DT/VVDD9ViMtVEPWnwlpXnFa+ELGjQszv/daapdwVMQvzph0V4jgE9jW6lJKKpN17PvzekC2l1vlb+rFwV+e38GNsaeaZ33A+OPQPDuOF7Fs/zMtdP1BPCvMLh/mms/f6w3u51x9W61GPVV6PYn1SWK92uH8h3M9yuL/pcL9b2P/gsB9G2B/lsF/OGYzYP5lhP+0OFdtfvRX77T2ev/B4HkfWns/yM8tqPp/F83oez296PM8rPN/tzdM8hrTCz/vz/oeA94F4vB9GeF+Qx/ujhPeJebxfzuN9g8L7J71KV5IAgPNi/cMTJ4LfQxF+H0fIQchByEHIQchByEHIQchByEHIQchByEHIQchByEHIQchByEHIQchByEHIQchByEHIQchBohiZqIGM9bYDAAAAAACAqvgHDuyN18xrS4AAAAAASUVORK5CYII=') ">
 
-                </div>
-                <div>
-                    <span class="name">Israel</span>
-                    <span class="continent">Asia</span>
-                </div>
-            </li>
-            <li>
+        <ul id="ul">
 
-                <div class="flag"
-                    style="background-image: url('data:image/png;base64,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') ">
-                </div>
-                <div> <span class="name">Argentina</span>
-                    <span class="continent">Asia</span>
-                </div>
-            </li>
         </ul>
+
     </main>
 
+    <script src="script.js"></script>
 </body>
 
 </html>
