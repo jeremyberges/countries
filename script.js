@@ -1,4 +1,5 @@
-const cn = document.querySelector('#countriesNum')
+const cn = document.querySelector('#countriesNum'),
+    ul = document.querySelector('#ul');
 document.getElementById("search").oninput = onValueChange
 let arr;
 
@@ -21,13 +22,9 @@ async function getCountry() {
 }
 
 getCountry();
-function onValueChange(e) {
-    let { value } = e.target
-    value = value.toLowerCase()
 
-    const filteredArr = arr.filter(item => item.name.toLowerCase().startsWith(value));
-    displayList(filteredArr)
-}
+
+
 
 function displayList(arr1) {
     Country = arr1.map(item =>
@@ -42,8 +39,15 @@ function displayList(arr1) {
            
            </div>
       
-   </li>`).join(''),
-        ul = document.querySelector('#ul');
+   </li>`).join('');
 
     ul.innerHTML = Country;
+}
+
+function onValueChange(e) {
+    let { value } = e.target
+    value = value.toLowerCase()
+
+    const filteredArr = arr.filter(item => item.name.toLowerCase().startsWith(value));
+    displayList(filteredArr)
 }
